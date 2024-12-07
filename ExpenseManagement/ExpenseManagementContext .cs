@@ -17,7 +17,9 @@ namespace ExpenseManagement
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-PTS6EQN;Database=ExpenseManagerDB;Trusted_Connection=True;");
+            var connectionString = System.Configuration.ConfigurationManager
+                .ConnectionStrings["ExpenseDbConnection"].ConnectionString;
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
     public class User
